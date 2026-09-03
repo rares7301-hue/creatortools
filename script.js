@@ -21,3 +21,20 @@ function pick(a){return a[Math.floor(Math.random()*a.length)]}
 function generateIdea(){document.getElementById("idea").textContent=pick(ideas)}
 function generateUsername(){document.getElementById("username").textContent=pick(names)+pick(names)+Math.floor(Math.random()*999)}
 function generateCaption(){document.getElementById("caption").textContent=pick(captions)}
+const hooks = [
+  "Stai până la final, nu o să-ți vină să crezi!",
+  "99% dintre oameni nu știu asta...",
+  "Dacă faci asta, videoclipurile tale pot avea mai multe vizualizări.",
+  "Am încercat asta timp de 7 zile și rezultatul m-a surprins.",
+  "Nu face greșeala asta când postezi pe TikTok!",
+  "Iată secretul pe care creatorii nu ți-l spun.",
+  "Oprește-te din scroll! Trebuie să vezi asta.",
+  "Dacă aș începe de la zero, asta aș face.",
+  "3 lucruri pe care trebuie să le știi înainte să postezi.",
+  "Credeam că nu funcționează, dar uite ce s-a întâmplat."
+];
+
+function generateHook() {
+  document.getElementById("hook").textContent =
+    hooks[Math.floor(Math.random() * hooks.length)];
+}
