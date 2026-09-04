@@ -53,3 +53,10 @@ function generateCaption() {
 function generateHook() {
   document.getElementById("hook").textContent = pick(hooks);
 }
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/creatortools/sw.js")
+      .then(() => console.log("CreatorTools PWA activ"))
+      .catch(error => console.log("PWA error:", error));
+  });
+}
