@@ -60,3 +60,65 @@ if ("serviceWorker" in navigator) {
       .catch(error => console.log("PWA error:", error));
   });
 }
+// ===== SUPABASE LOGIN =====
+
+const SUPABASE_URL = "https://tknqvhzdqcxuwibgyqpx.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_RmjiJhCbC1VUi7X2sK5BLA_HY8fDdti"
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+async function signUp() {
+  const email = document.getElementById("auth-email").value;
+  const password = document.getElementById("auth-password").value;
+  const message = document.getElementById("auth-message");
+
+  const { error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    message.textContent = "❌ " + error.message;
+    return;
+  }
+
+  message.textContent =
+    "✅ Cont creat! Verifică emailul dacă ți se cere.";
+}
+
+async function signIn() {
+  const email = document.getElementById("auth-email").value;
+  const password = document.getElementById("auth-password").value;
+  const message = document.getElementById("auth-message");
+
+  const { error } =
+    await supabaseClient.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+  if (error) {
+    message.textContent = "❌ " + error.message;
+    return;
+  }
+
+  message.textContent = "✅ Te-ai conectat!";
+}
+
+async function signOut() {
+  await supabaseClient.auth.signOut();
+  document.getElementById("auth-message").textContent =
+    "Ai ieșit din cont.";
+}
+
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  const message = document.getElementById("auth-message");
+
+  if (session?.user) {
+    message.textContent =
+      "✅ Conectat: " + session.user.email;
+  }
+});
