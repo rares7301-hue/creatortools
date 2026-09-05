@@ -14,7 +14,21 @@
     <div class="logo">Creator<span>Tools</span></div>
     <a href="#tools" class="top-btn">Începe acum</a>
   </header>
+<section id="auth" class="tools">
+  <article class="card">
+    <h2>🔐 Contul tău</h2>
 
+    <input id="auth-email" type="email" placeholder="Email">
+    <input id="auth-password" type="password" placeholder="Parolă">
+
+    <button onclick="signUp()">Creează cont</button>
+    <button onclick="signIn()">Intră în cont</button>
+
+    <p id="auth-message">Nu ești conectat.</p>
+
+    <button onclick="signOut()">Ieșire</button>
+  </article>
+</section>
   <main>
     <section class="hero">
       <div class="badge">✨ 100% gratuit</div>
